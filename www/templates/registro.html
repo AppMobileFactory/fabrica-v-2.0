@@ -1,0 +1,33 @@
+<ion-view view-title="Necesita Registrarse">
+
+  <ion-content>
+
+  <form ng-submit="saveUsuario()">
+    <div class="list">
+
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Nombre:</span>
+					<input type="text" placeholder="Nombre" ng-model="usuario.nombre">
+				</label>
+
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Apellido Paterno</span>
+					<input type="text" placeholder="Apellido Paterno" ng-model="usuario.apPat">
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Apellido Materno</span>
+					<input type="text" placeholder="Apellido Materno" ng-model="usuario.apMat">
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">Numero de celular</span>
+					<input type="number" placeholder="Numero de celular" ng-model="usuario.num">
+				</label>
+
+		</div>
+			<div class="padding" >
+				<button type="submit" class="button button-calm button-block">Guardar</button>
+			</div>
+
+		</form>
+  </ion-content>
+</ion-view>

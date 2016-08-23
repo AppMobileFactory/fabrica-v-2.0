@@ -42,6 +42,35 @@ angular.module('starter', ['ionic','ngCordova'])
         });
     });
 })
+.controller('RegistroCtrl', function($scope, $stateParams, $state){
+    
+   $scope.usuarios = [{
+    nombre:"juan",
+    apPat:"njjj",
+    apMat: "am",
+    num:"38738"
+},
+{
+    nombre:"jfgd",
+    apPat:"freer",
+    apMat:"fsfs",
+    num:"4538"
+
+}
+];
+    $scope.saveUsuario = saveUsuario;
+    $scope.usuario ={};
+
+    function saveUsuario(){
+      $scope.usuarios.push($scope.usuario);
+      console.log($scope.usuario);
+      $scope.usuario={};
+
+      $state.go('tab.dash');
+
+       
+  }
+})
 .controller("ExampleController", function ($scope, $cordovaCamera, myService) {
     $scope.takePhoto = function () {
         var options = {
@@ -96,7 +125,7 @@ angular.module('starter', ['ionic','ngCordova'])
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
     
     $cordovaGeolocation
-      .getCurrentPosition(posOptions)
+      .watchPosition(posOptions)
       .then(function (position) {
           myService.latitud = position.coords.latitude;
           myService.longitud = position.coords.longitude;
@@ -202,12 +231,20 @@ angular.module('starter', ['ionic','ngCordova'])
     $ionicConfigProvider.tabs.position("button");
     $ionicConfigProvider.navBar.alignTitle("center");
     $stateProvider
+
+        .state('registro',{
+            url: '/registro',
+            templateUrl: 'templates/registro.html',
+            controller: 'RegistroCtrl'
+        })
+
         .state('tab', {
             url: '/tab',
             abstract: true,
             templateUrl: 'templates/tabs.html'
         })
-    .state('tab.chats', {
+
+        .state('tab.chats', {
         url: '/chats',
         views: {
             'tab-chats': {
@@ -215,7 +252,8 @@ angular.module('starter', ['ionic','ngCordova'])
             }
         }
     })
-    .state('tab.dash', {
+
+        .state('tab.dash', {
         url: '/dash',
         views: {
             'tab-dash': {
@@ -223,5 +261,5 @@ angular.module('starter', ['ionic','ngCordova'])
             }
         }
     });
-    $urlRouterProvider.otherwise('/tab/dash');
+    $urlRouterProvider.otherwise('/registro');
 })
